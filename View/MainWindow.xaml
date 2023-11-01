@@ -1,0 +1,92 @@
+﻿<Window
+    x:Class="View.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:local="clr-namespace:View"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vms="clr-namespace:View.ViewModels"
+    Title="Адміністративна панель"
+    Width="600"
+    Height="400"
+    mc:Ignorable="d">
+
+    <Window.Resources>
+        <vms:MainViewModel x:Key="vm" />
+    </Window.Resources>
+
+    <Grid DataContext="{StaticResource vm}">
+        <TabControl Margin="2">
+            <TabItem Header="Клієнти">
+                <DataGrid
+                    AutoGenerateColumns="False"
+                    CanUserAddRows="False"
+                    CanUserDeleteRows="False"
+                    CanUserSortColumns="False"
+                    ItemsSource="{Binding Clients}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Name}" Header="ПІБ" />
+                        <DataGridTextColumn Binding="{Binding Telephone}" Header="Номер телефону" />
+                        <DataGridTextColumn Binding="{Binding Email}" Header="Пошта" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+            <TabItem Header="Тур Оператори">
+                <DataGrid
+                    AutoGenerateColumns="False"
+                    CanUserAddRows="False"
+                    CanUserDeleteRows="False"
+                    CanUserSortColumns="False"
+                    ItemsSource="{Binding Operators}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Name}" Header="ПІБ" />
+                        <DataGridTextColumn Binding="{Binding Telephone}" Header="Номер телефону" />
+                        <DataGridTextColumn Binding="{Binding Email}" Header="Пошта" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+            <TabItem Header="Готелі">
+                <DataGrid
+                    AutoGenerateColumns="False"
+                    CanUserAddRows="False"
+                    CanUserDeleteRows="False"
+                    CanUserSortColumns="False"
+                    ItemsSource="{Binding Hotels}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Name}" Header="Назва" />
+                        <DataGridTextColumn Binding="{Binding City}" Header="Місто" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+            <TabItem Header="Путіки">
+                <DataGrid
+                    AutoGenerateColumns="False"
+                    CanUserAddRows="False"
+                    CanUserDeleteRows="False"
+                    CanUserSortColumns="False"
+                    ItemsSource="{Binding Tours}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Name}" Header="Назва" />
+                        <DataGridTextColumn Binding="{Binding Operator.Name}" Header="Оператор" />
+                        <DataGridTextColumn Binding="{Binding Hotel.Name}" Header="Готель" />
+                        <DataGridTextColumn Binding="{Binding Days}" Header="Тривалість" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+            <TabItem Header="Заяви">
+                <DataGrid
+                    AutoGenerateColumns="False"
+                    CanUserAddRows="False"
+                    CanUserDeleteRows="False"
+                    CanUserSortColumns="False"
+                    ItemsSource="{Binding Statements}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Client.Name}" Header="Клієнт" />
+                        <DataGridTextColumn Binding="{Binding Tour.Name}" Header="Путівка" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
